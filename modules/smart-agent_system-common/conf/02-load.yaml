@@ -1,10 +1,12 @@
+---
 module: system
 name: "load 5m ratio"
 id: load
 transformation: ".min(over='30m')"
 signals:
+  num_processors: cpu.num_processors
   signal:
-    metric: load.midterm
+    metric: '${var.load_per_num_processors ? load.midterm / num_processors : load.midterm}'
 rules:
   critical:
     threshold: 2.5
@@ -13,3 +15,4 @@ rules:
     threshold: 2
     comparator: ">"
     dependency: critical
+...

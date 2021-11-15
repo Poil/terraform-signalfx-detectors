@@ -72,3 +72,8 @@ variable "disk_running_out_notifications" {
   default     = {}
 }
 
+variable "load_per_num_processors" {
+  description = "Divide the load per number of processors. Enable if not using reportPerCpu on SignalFX-Agent side or using OpenTelemetry Agent"
+  type        = bool
+  default     = false
+}
